@@ -37,5 +37,13 @@ namespace MobileShopWinform
             f.ShowDialog();
             this.Show();
         }
+
+        private void kháchHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCustomer f = new FrmCustomer();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }
