@@ -108,6 +108,7 @@ namespace MobileShopWinform
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.label1);
             this.Name = "FrmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);

@@ -16,5 +16,18 @@ namespace MobileShopWinform
         {
             InitializeComponent();
         }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void nhãnHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBrand f = new FrmBrand();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }
