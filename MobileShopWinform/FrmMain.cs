@@ -29,5 +29,13 @@ namespace MobileShopWinform
             f.ShowDialog();
             this.Show();
         }
+
+        private void danhMụcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCategory f = new FrmCategory();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }

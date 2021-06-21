@@ -1,7 +1,7 @@
 ﻿
 namespace MobileShopWinform
 {
-    partial class FrmBrand
+    partial class FrmCategory
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace MobileShopWinform
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvBrand = new System.Windows.Forms.DataGridView();
+            this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelControl = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@ namespace MobileShopWinform
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBrand)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
             this.panel2.SuspendLayout();
             this.panelControl.SuspendLayout();
             this.SuspendLayout();
@@ -55,10 +55,10 @@ namespace MobileShopWinform
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(7, 11);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(335, 320);
-            this.panel1.TabIndex = 3;
+            this.panel1.TabIndex = 6;
             // 
             // txtDesc
             // 
@@ -91,33 +91,33 @@ namespace MobileShopWinform
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(15, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
+            this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Tên nhãn hàng (*):";
+            this.label1.Text = "Tên danh mục (*):";
             // 
             // dgvBrand
             // 
-            this.dgvBrand.AllowUserToAddRows = false;
-            this.dgvBrand.AllowUserToDeleteRows = false;
-            this.dgvBrand.AllowUserToResizeRows = false;
-            this.dgvBrand.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBrand.Location = new System.Drawing.Point(3, 3);
-            this.dgvBrand.MultiSelect = false;
-            this.dgvBrand.Name = "dgvBrand";
-            this.dgvBrand.ReadOnly = true;
-            this.dgvBrand.RowHeadersWidth = 40;
-            this.dgvBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBrand.Size = new System.Drawing.Size(539, 423);
-            this.dgvBrand.TabIndex = 0;
-            this.dgvBrand.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBrand_RowEnter);
+            this.dgvCategory.AllowUserToAddRows = false;
+            this.dgvCategory.AllowUserToDeleteRows = false;
+            this.dgvCategory.AllowUserToResizeRows = false;
+            this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategory.Location = new System.Drawing.Point(3, 3);
+            this.dgvCategory.MultiSelect = false;
+            this.dgvCategory.Name = "dgvBrand";
+            this.dgvCategory.ReadOnly = true;
+            this.dgvCategory.RowHeadersWidth = 40;
+            this.dgvCategory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCategory.Size = new System.Drawing.Size(539, 423);
+            this.dgvCategory.TabIndex = 0;
+            this.dgvCategory.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBrand_RowEnter);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dgvBrand);
-            this.panel2.Location = new System.Drawing.Point(353, 12);
+            this.panel2.Controls.Add(this.dgvCategory);
+            this.panel2.Location = new System.Drawing.Point(348, 11);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(587, 429);
-            this.panel2.TabIndex = 5;
+            this.panel2.TabIndex = 8;
             // 
             // panelControl
             // 
@@ -127,10 +127,10 @@ namespace MobileShopWinform
             this.panelControl.Controls.Add(this.btnDelete);
             this.panelControl.Controls.Add(this.btnEdit);
             this.panelControl.Controls.Add(this.btnAdd);
-            this.panelControl.Location = new System.Drawing.Point(12, 338);
+            this.panelControl.Location = new System.Drawing.Point(7, 337);
             this.panelControl.Name = "panelControl";
             this.panelControl.Size = new System.Drawing.Size(335, 103);
-            this.panelControl.TabIndex = 4;
+            this.panelControl.TabIndex = 7;
             // 
             // btnExit
             // 
@@ -192,20 +192,20 @@ namespace MobileShopWinform
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // FrmBrand
+            // FrmCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 450);
+            this.ClientSize = new System.Drawing.Size(943, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelControl);
-            this.Name = "FrmBrand";
-            this.Text = "Nhãn hàng";
-            this.Load += new System.EventHandler(this.FrmBrand_Load);
+            this.Name = "FrmCategory";
+            this.Text = "Danh mục";
+            this.Load += new System.EventHandler(this.FrmCategory_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBrand)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panelControl.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -219,7 +219,7 @@ namespace MobileShopWinform
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvBrand;
+        private System.Windows.Forms.DataGridView dgvCategory;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelControl;
         private System.Windows.Forms.Button btnExit;

@@ -1,44 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MobileShopWinform
 {
-    public partial class FrmBrand : Form
+    public partial class FrmCategory : Form
     {
         private ControlHelper control = new ControlHelper();
 
-        public FrmBrand()
+        public FrmCategory()
         {
             InitializeComponent();
 
-            dgvBrand.AutoGenerateColumns = true;
-            dgvBrand.Columns.Add(Common.CreateDgvCol(30, "BrandID", "ID"));
-            dgvBrand.Columns.Add(Common.CreateDgvCol(200, "BrandName", "Tên nhãn hàng"));
-            dgvBrand.Columns.Add(Common.CreateDgvCol(300, "BrandDesc", "Mô tả"));
+            dgvCategory.AutoGenerateColumns = true;
+            dgvCategory.Columns.Add(Common.CreateDgvCol(30, "CategoryID", "ID"));
+            dgvCategory.Columns.Add(Common.CreateDgvCol(200, "CategoryName", "Tên danh mục"));
+            dgvCategory.Columns.Add(Common.CreateDgvCol(300, "CategoryDesc", "Mô tả"));
         }
 
         private void GetDgvData()
         {
-            string query = @"
-                select b.BrandID, b.BrandName, b.BrandDesc
-                from tblBrands b
-                ";
+            string query = @"select c.CategoryID, c.CategoryName, c.CategoryDesc from tblCategorys c;";
             SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
 
             DataTable dataTable = new DataTable();
             dataTable.Load(dataReader);
 
-            dgvBrand.DataSource = dataTable;
+            dgvCategory.DataSource = dataTable;
         }
 
-        private void FrmBrand_Load(object sender, EventArgs e)
+        private void FrmCategory_Load(object sender, EventArgs e)
         {
             // Init control
             control.AddBtnControls(btnAdd, btnEdit, btnDelete, btnSave, btnCancel);
             control.AddTextBoxs(txtName, txtDesc);
-            control.AddDataGridView(dgvBrand);
+            control.AddDataGridView(dgvCategory);
             control.SwitchMode(ControlHelper.ControlMode.None);
 
             GetDgvData();
@@ -58,21 +61,22 @@ namespace MobileShopWinform
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int idNeedDel = Common.GetCurID(dgvBrand, "BrandID");
+            int idNeedDel = Common.GetCurID(dgvCategory, "CategoryID");
 
             if (MyMessageBox.Question("Bạn có chắc chắn xoá bản ghi này không?"))
             {
-                string query = $"DELETE FROM tblBrands WHERE BrandID = {idNeedDel}";
+                string query = $"DELETE FROM tblCategorys WHERE CategoryID = {idNeedDel}";
                 SqlCommon.ExecuteNonQuery(query);
 
                 GetDgvData();
             }
         }
+
         private bool IsInvalid()
         {
             if (txtName.Text.Length == 0)
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên nhãn hàng!");
+                MyMessageBox.Warning("Bạn chưa nhập tên danh mục!");
                 txtName.Focus();
                 return false;
             }
@@ -92,7 +96,7 @@ namespace MobileShopWinform
                     case ControlHelper.ControlMode.Add:
                         {
                             string query = string.Format(@"
-insert into tblBrands (BrandName, BrandDesc)
+insert into tblCategorys (CategoryName, CategoryDesc)
 values (N'{0}', N'{1}');
                             ", name, desc);
                             SqlCommon.ExecuteNonQuery(query);
@@ -101,12 +105,12 @@ values (N'{0}', N'{1}');
                         break;
                     case ControlHelper.ControlMode.Edit:
                         {
-                            int idNeedEdit = Common.GetCurID(dgvBrand, "BrandID");
+                            int idNeedEdit = Common.GetCurID(dgvCategory, "CategoryID");
 
                             string query = string.Format(@"
-update tblBrands
-set BrandName  = N'{0}', BrandDesc = N'{1}'
-where BrandID = {2};
+update tblCategorys
+set CategoryName  = N'{0}', CategoryDesc = N'{1}'
+where CategoryID = {2};
                                 ", name, desc, idNeedEdit);
 
                             SqlCommon.ExecuteNonQuery(query);
@@ -132,8 +136,8 @@ where BrandID = {2};
         private void dgvBrand_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             int idx = e.RowIndex;
-            txtName.Text = dgvBrand.Rows[idx].Cells["BrandName"].Value.ToString();
-            txtDesc.Text = dgvBrand.Rows[idx].Cells["BrandDesc"].Value.ToString();
+            txtName.Text = dgvCategory.Rows[idx].Cells["CategoryName"].Value.ToString();
+            txtDesc.Text = dgvCategory.Rows[idx].Cells["CategoryDesc"].Value.ToString();
         }
     }
 }
