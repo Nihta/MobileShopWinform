@@ -45,5 +45,13 @@ namespace MobileShopWinform
             f.ShowDialog();
             this.Show();
         }
+
+        private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSupplier f = new FrmSupplier();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }

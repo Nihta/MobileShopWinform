@@ -5,40 +5,40 @@ using System.Windows.Forms;
 
 namespace MobileShopWinform
 {
-    public partial class FrmCustomer : Form
+    public partial class FrmSupplier : Form
     {
         private ControlHelper control = new ControlHelper();
 
-        public FrmCustomer()
+        public FrmSupplier()
         {
             InitializeComponent();
 
-            dgvCustomer.AutoGenerateColumns = true;
-            dgvCustomer.Columns.Add(Common.CreateDgvCol(30, "CustomerID", "ID"));
-            dgvCustomer.Columns.Add(Common.CreateDgvCol(200, "CustomerFirstName", "Họ"));
-            dgvCustomer.Columns.Add(Common.CreateDgvCol(140, "CustomerLastName", "Tên"));
-            dgvCustomer.Columns.Add(Common.CreateDgvCol(140, "CustomerAddress", "Địa chỉ"));
-            dgvCustomer.Columns.Add(Common.CreateDgvCol(100, "CustomerPhone", "Số điện thoại"));
-            dgvCustomer.Columns.Add(Common.CreateDgvCol(200, "CustomerEmail", "Email"));
+            dgvSup.AutoGenerateColumns = true;
+            dgvSup.Columns.Add(Common.CreateDgvCol(30, "SupplierID", "ID"));
+            dgvSup.Columns.Add(Common.CreateDgvCol(200, "SupplierName", "Tên nhà cung cấp"));
+            dgvSup.Columns.Add(Common.CreateDgvCol(140, "SupplierAddress", "Địa chỉ"));
+            dgvSup.Columns.Add(Common.CreateDgvCol(100, "SupplierPhone", "Số điện thoại"));
+            dgvSup.Columns.Add(Common.CreateDgvCol(200, "SupplierEmail", "Email"));
         }
 
         private void GetDgvData()
         {
-            string query = @"select CustomerID, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone, CustomerEmail from tblCustomers c";
+            string query = @"select s.SupplierID, s.SupplierName, s.SupplierAddress, s.SupplierPhone, s.SupplierEmail from tblSuppliers s";
             SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
 
             DataTable dataTable = new DataTable();
             dataTable.Load(dataReader);
 
-            dgvCustomer.DataSource = dataTable;
+            dgvSup.DataSource = dataTable;
         }
 
-        private void FrmCustomer_Load(object sender, EventArgs e)
+
+        private void FrmSupplier_Load(object sender, EventArgs e)
         {
             // Init control
             control.AddBtnControls(btnAdd, btnEdit, btnDelete, btnSave, btnCancel);
-            control.AddTextBoxs(txtFName, txtLName, txtAddress, txtEmail, txtPhone);
-            control.AddDataGridView(dgvCustomer);
+            control.AddTextBoxs(txtName, txtAddress, txtEmail, txtPhone);
+            control.AddDataGridView(dgvSup);
             control.SwitchMode(ControlHelper.ControlMode.None);
 
             GetDgvData();
@@ -47,22 +47,22 @@ namespace MobileShopWinform
         private void btnAdd_Click(object sender, EventArgs e)
         {
             control.HandledAddClick();
-            txtFName.Focus();
+            txtName.Focus();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             control.HandledEditClick();
-            txtFName.Focus();
+            txtName.Focus();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int idNeedDel = Common.GetCurID(dgvCustomer, "CustomerID");
+            int idNeedDel = Common.GetCurID(dgvSup, "SupplierID");
 
             if (MyMessageBox.Question("Bạn có chắc chắn xoá bản ghi này không?"))
             {
-                string query = $"DELETE FROM tblCustomers WHERE CustomerID = {idNeedDel}";
+                string query = $"DELETE FROM tblSuppliers WHERE SupplierID = {idNeedDel}";
                 SqlCommon.ExecuteNonQuery(query);
 
                 GetDgvData();
@@ -71,17 +71,17 @@ namespace MobileShopWinform
 
         private bool IsInvalid()
         {
-            if (txtFName.Text.Length == 0)
+            if (txtName.Text.Length == 0)
             {
-                MyMessageBox.Warning("Bạn chưa nhập họ!");
-                txtFName.Focus();
+                MyMessageBox.Warning("Bạn chưa nhập tên nhà cung cấp!");
+                txtName.Focus();
                 return false;
             }
 
-            if (txtLName.Text.Length == 0)
+            if (txtAddress.Text.Length == 0)
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên!");
-                txtLName.Focus();
+                MyMessageBox.Warning("Bạn chưa nhập địa chỉ!");
+                txtAddress.Focus();
                 return false;
             }
 
@@ -92,15 +92,22 @@ namespace MobileShopWinform
                 return false;
             }
 
+            if (txtEmail.Text.Length == 0)
+            {
+                MyMessageBox.Warning("Bạn chưa nhập địa chỉ email!");
+                txtEmail.Focus();
+                return false;
+            }
+
             return true;
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (IsInvalid())
             {
-                string fName = txtFName.Text;
-                string lName = txtLName.Text;
+                string name = txtName.Text;
                 string address = txtAddress.Text;
                 string phone = txtPhone.Text;
                 string email = txtEmail.Text;
@@ -110,22 +117,22 @@ namespace MobileShopWinform
                     case ControlHelper.ControlMode.Add:
                         {
                             string query = string.Format(@"
-insert into tblCustomers (CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone, CustomerEmail)
-values (N'{0}', N'{1}', N'{2}', '{3}', N'{4}');
-                            ", fName, lName, address, phone, email);
+                            insert into tblSuppliers (SupplierName, SupplierAddress, SupplierPhone, SupplierEmail)
+                            values (N'{0}', N'{1}', '{2}', N'{3}');
+                            ", name, address, phone, email);
                             SqlCommon.ExecuteNonQuery(query);
                             control.ClearTextBox();
                         }
                         break;
                     case ControlHelper.ControlMode.Edit:
                         {
-                            int idNeedEdit = Common.GetCurID(dgvCustomer, "CustomerID");
+                            int idNeedEdit = Common.GetCurID(dgvSup, "SupplierID");
 
                             string query = string.Format(@"
-update tblCustomers
-set CustomerFirstName = N'{0}', CustomerLastName = N'{1}', CustomerAddress = N'{2}', CustomerPhone = '{3}', CustomerEmail = N'{4}'
-where CustomerID = {5};
-                                ", fName, lName, address, phone, email, idNeedEdit);
+                            update tblSuppliers
+                            set SupplierName = N'{0}', SupplierAddress = N'{1}', SupplierPhone = '{2}', SupplierEmail = N'{3}'
+                            where SupplierID = {4};
+                            ", name, address, phone, email, idNeedEdit);
 
                             SqlCommon.ExecuteNonQuery(query);
                         }
@@ -151,11 +158,10 @@ where CustomerID = {5};
         {
             int idx = e.RowIndex;
 
-            txtFName.Text = dgvCustomer.Rows[idx].Cells["CustomerFirstName"].Value.ToString();
-            txtLName.Text = dgvCustomer.Rows[idx].Cells["CustomerLastName"].Value.ToString();
-            txtAddress.Text = dgvCustomer.Rows[idx].Cells["CustomerAddress"].Value.ToString();
-            txtPhone.Text = dgvCustomer.Rows[idx].Cells["CustomerPhone"].Value.ToString();
-            txtEmail.Text = dgvCustomer.Rows[idx].Cells["CustomerEmail"].Value.ToString();
+            txtName.Text = dgvSup.Rows[idx].Cells["SupplierName"].Value.ToString();
+            txtAddress.Text = dgvSup.Rows[idx].Cells["SupplierAddress"].Value.ToString();
+            txtPhone.Text = dgvSup.Rows[idx].Cells["SupplierPhone"].Value.ToString();
+            txtEmail.Text = dgvSup.Rows[idx].Cells["SupplierEmail"].Value.ToString();
         }
     }
 }
