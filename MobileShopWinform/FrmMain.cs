@@ -178,6 +178,11 @@ namespace MobileShopWinform
                 return;
             }
 
+            if (!MyMessageBox.Question("Hành động không thể hoàn tác!\nBạn có chắc chắn?"))
+            {
+                return;
+            }
+
             // Add order
             string date = dateTimePickerOrder.Text;
             string queryAddOrder = string.Format(@"
@@ -204,10 +209,27 @@ namespace MobileShopWinform
                 Convert.ToInt32(dataRow["ProductID"].ToString()),
                 lastOrderID
                 );
+
+                SqlCommon.ExecuteNonQuery(queryAddOrderDetail);
             }
 
             MyMessageBox.Information("Thành công!");
             dtOrderDetail.Clear();
+
+            FrmPrint f = new FrmPrint(lastOrderID);
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void btnLastOrder_Click(object sender, EventArgs e)
+        {
+            string queryGetLastOrderID = @"select top 1 OrderID from tblOrders order by OrderID desc";
+            int lastOrderID = Convert.ToInt32(SqlCommon.ExecuteScalar(queryGetLastOrderID).ToString());
+            FrmPrint f = new FrmPrint(lastOrderID);
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
         }
     }
 }

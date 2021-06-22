@@ -68,6 +68,7 @@ namespace MobileShopWinform
             this.label1 = new System.Windows.Forms.Label();
             this.txtTotalOrder = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnLastOrder = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
@@ -344,6 +345,7 @@ namespace MobileShopWinform
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnLastOrder);
             this.groupBox2.Controls.Add(this.btnAddOrderAndPrint);
             this.groupBox2.Controls.Add(this.cbCustomer);
             this.groupBox2.Controls.Add(this.btnSearchCustomer);
@@ -435,6 +437,16 @@ namespace MobileShopWinform
             this.label3.TabIndex = 3;
             this.label3.Text = "Tổng tiền";
             // 
+            // btnLastOrder
+            // 
+            this.btnLastOrder.Location = new System.Drawing.Point(257, 174);
+            this.btnLastOrder.Name = "btnLastOrder";
+            this.btnLastOrder.Size = new System.Drawing.Size(146, 23);
+            this.btnLastOrder.TabIndex = 22;
+            this.btnLastOrder.Text = "Xem hoá đơn gần nhất";
+            this.btnLastOrder.UseVisualStyleBackColor = true;
+            this.btnLastOrder.Click += new System.EventHandler(this.btnLastOrder_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,5 +516,6 @@ namespace MobileShopWinform
         private System.Windows.Forms.TextBox txtTotalOrder;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnDelAll;
+        private System.Windows.Forms.Button btnLastOrder;
     }
 }
