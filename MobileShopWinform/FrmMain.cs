@@ -231,5 +231,13 @@ namespace MobileShopWinform
             f.ShowDialog();
             this.Show();
         }
+
+        private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAccountProfile f = new FrmAccountProfile();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }
