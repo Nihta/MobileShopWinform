@@ -17,10 +17,10 @@ namespace MobileShopWinform
             dgvOrderDetail.AutoGenerateColumns = true;
             dgvOrderDetail.Columns.Add(Common.CreateDgvCol(30, "OrderDetailID", "ID"));
             dgvOrderDetail.Columns.Add(Common.CreateDgvCol(260, "ProductName", "Tên mặt hàng"));
-            dgvOrderDetail.Columns.Add(Common.CreateDgvCol(80, "ProductPrice", "Đơn giá "));
+            dgvOrderDetail.Columns.Add(Common.CreateDgvCol(120, "ProductPrice", "Đơn giá (VND)"));
             dgvOrderDetail.Columns.Add(Common.CreateDgvCol(80, "OrderDetailQuantity", "Số lượng"));
-            dgvOrderDetail.Columns.Add(Common.CreateDgvCol(100, "OrderDetailTotalAmount", "Tổng tiền"));
-            dgvOrderDetail.Columns.Add(Common.CreateDgvCol(210, "OrderDetailNote", "Ghi chú"));
+            dgvOrderDetail.Columns.Add(Common.CreateDgvCol(110, "OrderDetailTotalAmount", "Tổng tiền (VND)"));
+            dgvOrderDetail.Columns.Add(Common.CreateDgvCol(150, "OrderDetailNote", "Ghi chú"));
         }
 
         private void GetData()
@@ -35,7 +35,7 @@ namespace MobileShopWinform
                 res.Read();
 
                 labelDate.Text = res["OrderDate"].ToString();
-                labelTotalAmount.Text = res["OrderTotalAmount"].ToString();
+                labelTotalAmount.Text = res["OrderTotalAmount"].ToString() + " VND";
 
                 string customerID = res["CustemerID"].ToString();
                 // Get Customer Info

@@ -39,9 +39,9 @@ namespace MobileShopWinform
             this.nhậpHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.lịchSửMuaHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lịchSửNhậpHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thôngTinCáNhânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.trợGiúpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hướngDẫnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +60,7 @@ namespace MobileShopWinform
             this.dgvOrderDetail = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnLastOrder = new System.Windows.Forms.Button();
             this.btnAddOrderAndPrint = new System.Windows.Forms.Button();
             this.cbCustomer = new System.Windows.Forms.ComboBox();
             this.btnSearchCustomer = new System.Windows.Forms.Button();
@@ -68,8 +69,6 @@ namespace MobileShopWinform
             this.label1 = new System.Windows.Forms.Label();
             this.txtTotalOrder = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnLastOrder = new System.Windows.Forms.Button();
-            this.thôngTinCáNhânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
@@ -150,7 +149,6 @@ namespace MobileShopWinform
             // 
             this.thốngKêToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.thốngKêToolStripMenuItem1,
-            this.lịchSửMuaHàngToolStripMenuItem,
             this.lịchSửNhậpHàngToolStripMenuItem});
             this.thốngKêToolStripMenuItem.Name = "thốngKêToolStripMenuItem";
             this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
@@ -159,19 +157,14 @@ namespace MobileShopWinform
             // thốngKêToolStripMenuItem1
             // 
             this.thốngKêToolStripMenuItem1.Name = "thốngKêToolStripMenuItem1";
-            this.thốngKêToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
-            this.thốngKêToolStripMenuItem1.Text = "Thống kê";
-            // 
-            // lịchSửMuaHàngToolStripMenuItem
-            // 
-            this.lịchSửMuaHàngToolStripMenuItem.Name = "lịchSửMuaHàngToolStripMenuItem";
-            this.lịchSửMuaHàngToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.lịchSửMuaHàngToolStripMenuItem.Text = "Lịch sử mua hàng";
+            this.thốngKêToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
+            this.thốngKêToolStripMenuItem1.Text = "Thống kê doanh thu";
+            this.thốngKêToolStripMenuItem1.Click += new System.EventHandler(this.thốngKêToolStripMenuItem1_Click);
             // 
             // lịchSửNhậpHàngToolStripMenuItem
             // 
             this.lịchSửNhậpHàngToolStripMenuItem.Name = "lịchSửNhậpHàngToolStripMenuItem";
-            this.lịchSửNhậpHàngToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.lịchSửNhậpHàngToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lịchSửNhậpHàngToolStripMenuItem.Text = "Lịch sử nhập hàng";
             // 
             // tàiKhoảnToolStripMenuItem
@@ -183,10 +176,17 @@ namespace MobileShopWinform
             this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.tàiKhoảnToolStripMenuItem.Text = "Tài khoản";
             // 
+            // thôngTinCáNhânToolStripMenuItem
+            // 
+            this.thôngTinCáNhânToolStripMenuItem.Name = "thôngTinCáNhânToolStripMenuItem";
+            this.thôngTinCáNhânToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thôngTinCáNhânToolStripMenuItem.Text = "Thông tin cá nhân";
+            this.thôngTinCáNhânToolStripMenuItem.Click += new System.EventHandler(this.thôngTinCáNhânToolStripMenuItem_Click);
+            // 
             // đăngXuấtToolStripMenuItem1
             // 
             this.đăngXuấtToolStripMenuItem1.Name = "đăngXuấtToolStripMenuItem1";
-            this.đăngXuấtToolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
+            this.đăngXuấtToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.đăngXuấtToolStripMenuItem1.Text = "Đăng xuất";
             this.đăngXuấtToolStripMenuItem1.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem1_Click_1);
             // 
@@ -363,6 +363,16 @@ namespace MobileShopWinform
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thanh toán";
             // 
+            // btnLastOrder
+            // 
+            this.btnLastOrder.Location = new System.Drawing.Point(257, 174);
+            this.btnLastOrder.Name = "btnLastOrder";
+            this.btnLastOrder.Size = new System.Drawing.Size(146, 23);
+            this.btnLastOrder.TabIndex = 22;
+            this.btnLastOrder.Text = "Xem hoá đơn gần nhất";
+            this.btnLastOrder.UseVisualStyleBackColor = true;
+            this.btnLastOrder.Click += new System.EventHandler(this.btnLastOrder_Click);
+            // 
             // btnAddOrderAndPrint
             // 
             this.btnAddOrderAndPrint.Location = new System.Drawing.Point(31, 174);
@@ -439,23 +449,6 @@ namespace MobileShopWinform
             this.label3.TabIndex = 3;
             this.label3.Text = "Tổng tiền";
             // 
-            // btnLastOrder
-            // 
-            this.btnLastOrder.Location = new System.Drawing.Point(257, 174);
-            this.btnLastOrder.Name = "btnLastOrder";
-            this.btnLastOrder.Size = new System.Drawing.Size(146, 23);
-            this.btnLastOrder.TabIndex = 22;
-            this.btnLastOrder.Text = "Xem hoá đơn gần nhất";
-            this.btnLastOrder.UseVisualStyleBackColor = true;
-            this.btnLastOrder.Click += new System.EventHandler(this.btnLastOrder_Click);
-            // 
-            // thôngTinCáNhânToolStripMenuItem
-            // 
-            this.thôngTinCáNhânToolStripMenuItem.Name = "thôngTinCáNhânToolStripMenuItem";
-            this.thôngTinCáNhânToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.thôngTinCáNhânToolStripMenuItem.Text = "Thông tin cá nhân";
-            this.thôngTinCáNhânToolStripMenuItem.Click += new System.EventHandler(this.thôngTinCáNhânToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,7 +491,6 @@ namespace MobileShopWinform
         private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem trợGiúpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem lịchSửMuaHàngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lịchSửNhậpHàngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hướngDẫnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem giớiThiệuToolStripMenuItem;

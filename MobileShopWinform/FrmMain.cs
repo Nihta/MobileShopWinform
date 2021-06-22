@@ -220,6 +220,11 @@ namespace MobileShopWinform
             this.Hide();
             f.ShowDialog();
             this.Show();
+
+            dtOrderDetail.Clear();
+            this.totalAmount = 0;
+            txtTotalOrder.Text = totalAmount.ToString();
+            dateTimePickerOrder.Value = DateTime.Now;
         }
 
         private void btnLastOrder_Click(object sender, EventArgs e)
@@ -235,6 +240,14 @@ namespace MobileShopWinform
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAccountProfile f = new FrmAccountProfile();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void thốngKêToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmStatistic f = new FrmStatistic();
             this.Hide();
             f.ShowDialog();
             this.Show();
