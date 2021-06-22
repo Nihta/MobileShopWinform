@@ -107,7 +107,7 @@ namespace MobileShopWinform
             this.dgvBrand.ReadOnly = true;
             this.dgvBrand.RowHeadersWidth = 40;
             this.dgvBrand.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBrand.Size = new System.Drawing.Size(539, 423);
+            this.dgvBrand.Size = new System.Drawing.Size(632, 423);
             this.dgvBrand.TabIndex = 0;
             this.dgvBrand.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBrand_RowEnter);
             // 
@@ -116,7 +116,7 @@ namespace MobileShopWinform
             this.panel2.Controls.Add(this.dgvBrand);
             this.panel2.Location = new System.Drawing.Point(353, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(587, 429);
+            this.panel2.Size = new System.Drawing.Size(638, 429);
             this.panel2.TabIndex = 5;
             // 
             // panelControl
@@ -196,7 +196,7 @@ namespace MobileShopWinform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 450);
+            this.ClientSize = new System.Drawing.Size(1003, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelControl);

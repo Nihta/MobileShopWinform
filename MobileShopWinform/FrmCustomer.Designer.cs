@@ -30,13 +30,13 @@ namespace MobileShopWinform
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSelect = new System.Windows.Forms.Button();
             this.cbFields = new System.Windows.Forms.ComboBox();
             this.txtFieldValue = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSelect = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -74,6 +74,16 @@ namespace MobileShopWinform
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm";
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(587, 17);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnSelect.TabIndex = 11;
+            this.btnSelect.Text = "Chọn";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Visible = false;
             // 
             // cbFields
             // 
@@ -131,16 +141,6 @@ namespace MobileShopWinform
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(845, 309);
             this.panel2.TabIndex = 8;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Location = new System.Drawing.Point(587, 17);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnSelect.TabIndex = 11;
-            this.btnSelect.Text = "Chọn";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Visible = false;
             // 
             // txtEmail
             // 
@@ -321,7 +321,7 @@ namespace MobileShopWinform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1245, 479);
+            this.ClientSize = new System.Drawing.Size(1245, 437);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

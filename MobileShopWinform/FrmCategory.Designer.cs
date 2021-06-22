@@ -95,7 +95,7 @@ namespace MobileShopWinform
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên danh mục (*):";
             // 
-            // dgvBrand
+            // dgvCategory
             // 
             this.dgvCategory.AllowUserToAddRows = false;
             this.dgvCategory.AllowUserToDeleteRows = false;
@@ -103,11 +103,11 @@ namespace MobileShopWinform
             this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategory.Location = new System.Drawing.Point(3, 3);
             this.dgvCategory.MultiSelect = false;
-            this.dgvCategory.Name = "dgvBrand";
+            this.dgvCategory.Name = "dgvCategory";
             this.dgvCategory.ReadOnly = true;
             this.dgvCategory.RowHeadersWidth = 40;
             this.dgvCategory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCategory.Size = new System.Drawing.Size(539, 423);
+            this.dgvCategory.Size = new System.Drawing.Size(613, 423);
             this.dgvCategory.TabIndex = 0;
             this.dgvCategory.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBrand_RowEnter);
             // 
@@ -116,7 +116,7 @@ namespace MobileShopWinform
             this.panel2.Controls.Add(this.dgvCategory);
             this.panel2.Location = new System.Drawing.Point(348, 11);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(587, 429);
+            this.panel2.Size = new System.Drawing.Size(619, 429);
             this.panel2.TabIndex = 8;
             // 
             // panelControl
@@ -196,7 +196,7 @@ namespace MobileShopWinform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 450);
+            this.ClientSize = new System.Drawing.Size(979, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelControl);

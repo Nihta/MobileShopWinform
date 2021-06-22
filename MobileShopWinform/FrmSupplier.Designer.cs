@@ -41,7 +41,6 @@ namespace MobileShopWinform
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvSup = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -172,16 +171,9 @@ namespace MobileShopWinform
             this.dgvSup.Name = "dgvSup";
             this.dgvSup.ReadOnly = true;
             this.dgvSup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSup.Size = new System.Drawing.Size(830, 364);
+            this.dgvSup.Size = new System.Drawing.Size(830, 412);
             this.dgvSup.TabIndex = 0;
             this.dgvSup.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_RowEnter);
-            // 
-            // panel3
-            // 
-            this.panel3.Location = new System.Drawing.Point(388, 386);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(845, 44);
-            this.panel3.TabIndex = 14;
             // 
             // txtAddress
             // 
@@ -222,7 +214,7 @@ namespace MobileShopWinform
             this.panel2.Controls.Add(this.dgvSup);
             this.panel2.Location = new System.Drawing.Point(388, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(845, 367);
+            this.panel2.Size = new System.Drawing.Size(845, 418);
             this.panel2.TabIndex = 13;
             // 
             // panel1
@@ -246,11 +238,10 @@ namespace MobileShopWinform
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 450);
             this.Controls.Add(this.panelControl);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FrmSupplier";
-            this.Text = "FrmSupplier";
+            this.Text = "Nhà cung cấp";
             this.Load += new System.EventHandler(this.FrmSupplier_Load);
             this.panelControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSup)).EndInit();
@@ -275,7 +266,6 @@ namespace MobileShopWinform
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgvSup;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtName;

@@ -53,5 +53,26 @@ namespace MobileShopWinform
             f.ShowDialog();
             this.Show();
         }
+
+        private void sảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProduct f = new FrmProduct();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void đăngXuấtToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void nhậpHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSupplyDetail f = new FrmSupplyDetail();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }

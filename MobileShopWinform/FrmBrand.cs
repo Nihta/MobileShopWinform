@@ -68,6 +68,7 @@ namespace MobileShopWinform
                 GetDgvData();
             }
         }
+
         private bool IsInvalid()
         {
             if (txtName.Text.Length == 0)
@@ -92,8 +93,8 @@ namespace MobileShopWinform
                     case ControlHelper.ControlMode.Add:
                         {
                             string query = string.Format(@"
-insert into tblBrands (BrandName, BrandDesc)
-values (N'{0}', N'{1}');
+                            insert into tblBrands (BrandName, BrandDesc)
+                            values (N'{0}', N'{1}');
                             ", name, desc);
                             SqlCommon.ExecuteNonQuery(query);
                             control.ClearTextBox();
@@ -104,10 +105,10 @@ values (N'{0}', N'{1}');
                             int idNeedEdit = Common.GetCurID(dgvBrand, "BrandID");
 
                             string query = string.Format(@"
-update tblBrands
-set BrandName  = N'{0}', BrandDesc = N'{1}'
-where BrandID = {2};
-                                ", name, desc, idNeedEdit);
+                            update tblBrands
+                            set BrandName  = N'{0}', BrandDesc = N'{1}'
+                            where BrandID = {2};
+                            ", name, desc, idNeedEdit);
 
                             SqlCommon.ExecuteNonQuery(query);
                         }
