@@ -35,7 +35,10 @@ namespace MobileShopWinform
         private void GetDgvData()
         {
             string query = @"
-                select SupplyDetailID, SupplyDetailQuantity, SupplyDetailNote, SupplyDetailTotalAmount, SupplyDetailDate, tP.ProductID, ProductName, tS.SupplierID, SupplierName
+                select
+                    SupplyDetailID, SupplyDetailQuantity, SupplyDetailNote,
+                    SupplyDetailTotalAmount, SupplyDetailDate, tP.ProductID,
+                    ProductName, tS.SupplierID, SupplierName
                 from tblSupplyDetails
                 join tblProducts tP on tP.ProductID = tblSupplyDetails.ProductID
                 join tblSuppliers tS on tblSupplyDetails.SupplierID = tS.SupplierID
@@ -160,7 +163,8 @@ namespace MobileShopWinform
                         {
                             string query = string.Format(@"
                             insert into tblSupplyDetails
-                            (SupplyDetailQuantity, SupplyDetailNote, SupplyDetailDate, SupplyDetailTotalAmount, ProductID, SupplierID)
+                                (SupplyDetailQuantity, SupplyDetailNote, SupplyDetailDate,
+                                SupplyDetailTotalAmount, ProductID, SupplierID)
                             values ({0}, N'{1}', '{2}', {3}, {4}, {5});
                             ", quantity, note, date, totalAmount, productID, supplierID);
                             SqlCommon.ExecuteNonQuery(query);
@@ -183,6 +187,11 @@ namespace MobileShopWinform
                         }
                         break;
                 }
+                // ! Chưa hoạt động với order (cần trừ đi số đã bán)
+                // Cập nhật lại số lượng mặt hàng
+                string queryGetPrAm = $"select sum(SupplyDetailQuantity) from tblSupplyDetails where ProductID = {productID}";
+                int productAmount = Convert.ToInt32(SqlCommon.ExecuteScalar(queryGetPrAm).ToString());
+                SqlCommon.ExecuteNonQuery($"update tblProducts set ProductAmount = {productAmount} where ProductID = {productID};");
 
                 GetDgvData();
                 control.SwitchMode(ControlHelper.ControlMode.None);
@@ -217,7 +226,6 @@ namespace MobileShopWinform
 
         private void numericUpDownQuantity_ValueChanged(object sender, EventArgs e)
         {
-      
             if (cbProduct.SelectedValue != null && control.GetMode() != ControlHelper.ControlMode.None)
             {
                 int productID = Convert.ToInt32(cbProduct.SelectedValue.ToString());

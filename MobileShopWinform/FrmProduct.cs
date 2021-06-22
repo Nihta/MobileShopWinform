@@ -9,17 +9,40 @@ namespace MobileShopWinform
     {
         private ControlHelper control = new ControlHelper();
 
+        #region Sql
+        public static int GetPrice(int productID)
+        {
+            string query = $"select ProductPrice from tblProducts where ProductID = {productID}";
+            int price = Convert.ToInt32(SqlCommon.ExecuteScalar(query).ToString());
+            return price;
+        }
+
+        public static void FillCombox(ComboBox cb)
+        {
+            string query = "select ProductID, ProductName from tblProducts";
+            SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
+
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dataReader);
+
+            cb.DataSource = dataTable;
+            cb.DisplayMember = "ProductName";
+            cb.ValueMember = "ProductID";
+        }
+        #endregion
+
         public FrmProduct()
         {
             InitializeComponent();
 
-            dgvProduct.AutoGenerateColumns = true;
+            dgvProduct.AutoGenerateColumns = false;
             dgvProduct.Columns.Add(Common.CreateDgvCol(30, "ProductID", "ID"));
-            dgvProduct.Columns.Add(Common.CreateDgvCol(200, "BrandName", "Tên mặt hàng"));
+            dgvProduct.Columns.Add(Common.CreateDgvCol(200, "ProductName", "Tên mặt hàng"));
             dgvProduct.Columns.Add(Common.CreateDgvCol(100, "ProductPrice", "Giá"));
+            dgvProduct.Columns.Add(Common.CreateDgvCol(100, "ProductAmount", "Số lượng"));
+            dgvProduct.Columns.Add(Common.CreateDgvCol(100, "CategoryName", "Danh mục"));
+            dgvProduct.Columns.Add(Common.CreateDgvCol(100, "BrandName", "Nhãn hàng"));
             dgvProduct.Columns.Add(Common.CreateDgvCol(300, "ProductDesc", "Mô tả"));
-            dgvProduct.Columns.Add(Common.CreateDgvCol(200, "CategoryName", "Danh mục"));
-            dgvProduct.Columns.Add(Common.CreateDgvCol(200, "BrandName", "Nhãn hàng"));
 
             dgvProduct.Columns.Add(Common.CreateDgvCol(30, "CategoryID", "Nhãn hàng"));
             dgvProduct.Columns["CategoryID"].Visible = false;
@@ -31,7 +54,7 @@ namespace MobileShopWinform
         private void GetDgvData()
         {
             string query = @"
-                select  ProductID, ProductName, ProductPrice, ProductDesc, t.BrandID, BrandName, tC.CategoryID, CategoryName from tblProducts
+                select  ProductID, ProductName, ProductPrice, ProductDesc, ProductAmount, t.BrandID, BrandName, tC.CategoryID, CategoryName from tblProducts
                 join tblBrands t on t.BrandID = tblProducts.BrandID
                 join tblCategorys tC on tC.CategoryID = tblProducts.CategoryID
             ";

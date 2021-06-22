@@ -141,7 +141,7 @@ namespace MobileShopWinform
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(381, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(702, 100);
+            this.groupBox1.Size = new System.Drawing.Size(864, 100);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm";
@@ -173,7 +173,7 @@ namespace MobileShopWinform
             this.panelControl.Controls.Add(this.btnDelete);
             this.panelControl.Controls.Add(this.btnEdit);
             this.panelControl.Controls.Add(this.btnAdd);
-            this.panelControl.Location = new System.Drawing.Point(12, 338);
+            this.panelControl.Location = new System.Drawing.Point(12, 461);
             this.panelControl.Name = "panelControl";
             this.panelControl.Size = new System.Drawing.Size(363, 92);
             this.panelControl.TabIndex = 13;
@@ -253,7 +253,7 @@ namespace MobileShopWinform
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(363, 320);
+            this.panel1.Size = new System.Drawing.Size(363, 443);
             this.panel1.TabIndex = 12;
             // 
             // cbBrand
@@ -357,7 +357,7 @@ namespace MobileShopWinform
             this.dgvProduct.Name = "dgvProduct";
             this.dgvProduct.ReadOnly = true;
             this.dgvProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProduct.Size = new System.Drawing.Size(696, 296);
+            this.dgvProduct.Size = new System.Drawing.Size(861, 429);
             this.dgvProduct.TabIndex = 0;
             this.dgvProduct.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_RowEnter);
             // 
@@ -366,14 +366,14 @@ namespace MobileShopWinform
             this.panel2.Controls.Add(this.dgvProduct);
             this.panel2.Location = new System.Drawing.Point(381, 118);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(702, 312);
+            this.panel2.Size = new System.Drawing.Size(867, 435);
             this.panel2.TabIndex = 14;
             // 
             // FrmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 450);
+            this.ClientSize = new System.Drawing.Size(1260, 565);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panelControl);
             this.Controls.Add(this.panel1);

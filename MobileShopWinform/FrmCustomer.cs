@@ -9,6 +9,23 @@ namespace MobileShopWinform
     {
         private ControlHelper control = new ControlHelper();
 
+        #region Sql
+        public static void FillCombox(ComboBox cb)
+        {
+            string query = @"
+                select CustomerID, CustomerFirstName + ' ' + CustomerLastName + ' (' + CustomerPhone + ')' as CustomeFullName
+                from tblCustomers
+                ";
+            SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
+
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dataReader);
+
+            cb.DataSource = dataTable;
+            cb.DisplayMember = "CustomeFullName";
+            cb.ValueMember = "CustomerID";
+        }
+        #endregion
         public FrmCustomer()
         {
             InitializeComponent();
