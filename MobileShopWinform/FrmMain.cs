@@ -43,60 +43,7 @@ namespace MobileShopWinform
             dateTimePickerOrder.Value = DateTime.Now;
         }
 
-        #region Menu strip
-        private void nhãnHàngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmBrand f = new FrmBrand();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
 
-        private void danhMụcToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCategory f = new FrmCategory();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void kháchHàngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCustomer f = new FrmCustomer();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmSupplier f = new FrmSupplier();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void sảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmProduct f = new FrmProduct();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void đăngXuấtToolStripMenuItem1_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void nhậpHàngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmSupplyDetail f = new FrmSupplyDetail();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-        #endregion
 
         private void btnAddOrderItem_Click(object sender, EventArgs e)
         {
@@ -237,6 +184,60 @@ namespace MobileShopWinform
             this.Show();
         }
 
+        #region Menu strip
+        private void nhãnHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBrand f = new FrmBrand();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void danhMụcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCategory f = new FrmCategory();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void kháchHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCustomer f = new FrmCustomer();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSupplier f = new FrmSupplier();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void sảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProduct f = new FrmProduct();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void đăngXuấtToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void nhậpHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSupplyDetail f = new FrmSupplyDetail();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAccountProfile f = new FrmAccountProfile();
@@ -252,5 +253,14 @@ namespace MobileShopWinform
             f.ShowDialog();
             this.Show();
         }
+
+        private void lịchSửNhậpHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmFrmStatisticCost f = new FrmFrmStatisticCost();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+        #endregion
     }
 }

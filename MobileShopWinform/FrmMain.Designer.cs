@@ -164,8 +164,9 @@ namespace MobileShopWinform
             // lịchSửNhậpHàngToolStripMenuItem
             // 
             this.lịchSửNhậpHàngToolStripMenuItem.Name = "lịchSửNhậpHàngToolStripMenuItem";
-            this.lịchSửNhậpHàngToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.lịchSửNhậpHàngToolStripMenuItem.Text = "Lịch sử nhập hàng";
+            this.lịchSửNhậpHàngToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.lịchSửNhậpHàngToolStripMenuItem.Text = "Thống kê chi phí";
+            this.lịchSửNhậpHàngToolStripMenuItem.Click += new System.EventHandler(this.lịchSửNhậpHàngToolStripMenuItem_Click);
             // 
             // tàiKhoảnToolStripMenuItem
             // 
