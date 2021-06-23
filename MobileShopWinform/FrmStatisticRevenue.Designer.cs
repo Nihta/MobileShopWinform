@@ -1,7 +1,7 @@
 ﻿
 namespace MobileShopWinform
 {
-    partial class FrmStatistic
+    partial class FrmStatisticRevenue
     {
         /// <summary>
         /// Required designer variable.
@@ -35,13 +35,15 @@ namespace MobileShopWinform
             this.btnFilter = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAll = new System.Windows.Forms.Button();
-            this.btnMonth = new System.Windows.Forms.Button();
-            this.btnWeek = new System.Windows.Forms.Button();
             this.btnDay = new System.Windows.Forms.Button();
             this.btnViewMore = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelTotalAmount = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelCustomer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,13 +95,16 @@ namespace MobileShopWinform
             this.btnFilter.TabIndex = 22;
             this.btnFilter.Text = "Lọc phạm vi";
             this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelCustomer);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.labelTotalAmount);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnAll);
-            this.groupBox1.Controls.Add(this.btnMonth);
             this.groupBox1.Controls.Add(this.btnFilter);
-            this.groupBox1.Controls.Add(this.btnWeek);
             this.groupBox1.Controls.Add(this.btnDay);
             this.groupBox1.Controls.Add(this.dateTimePickerStart);
             this.groupBox1.Controls.Add(this.dateTimePickerEnd);
@@ -108,43 +113,27 @@ namespace MobileShopWinform
             this.groupBox1.Size = new System.Drawing.Size(536, 422);
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Phạm vi";
+            this.groupBox1.Text = "Phạm vi thống kê";
             // 
             // btnAll
             // 
-            this.btnAll.Location = new System.Drawing.Point(333, 74);
+            this.btnAll.Location = new System.Drawing.Point(440, 68);
             this.btnAll.Name = "btnAll";
             this.btnAll.Size = new System.Drawing.Size(75, 23);
             this.btnAll.TabIndex = 28;
             this.btnAll.Text = "Tất cả";
             this.btnAll.UseVisualStyleBackColor = true;
-            // 
-            // btnMonth
-            // 
-            this.btnMonth.Location = new System.Drawing.Point(230, 74);
-            this.btnMonth.Name = "btnMonth";
-            this.btnMonth.Size = new System.Drawing.Size(75, 23);
-            this.btnMonth.TabIndex = 27;
-            this.btnMonth.Text = "Tháng";
-            this.btnMonth.UseVisualStyleBackColor = true;
-            // 
-            // btnWeek
-            // 
-            this.btnWeek.Location = new System.Drawing.Point(123, 75);
-            this.btnWeek.Name = "btnWeek";
-            this.btnWeek.Size = new System.Drawing.Size(75, 23);
-            this.btnWeek.TabIndex = 26;
-            this.btnWeek.Text = "Tuần";
-            this.btnWeek.UseVisualStyleBackColor = true;
+            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // btnDay
             // 
-            this.btnDay.Location = new System.Drawing.Point(20, 75);
+            this.btnDay.Location = new System.Drawing.Point(20, 68);
             this.btnDay.Name = "btnDay";
             this.btnDay.Size = new System.Drawing.Size(75, 23);
             this.btnDay.TabIndex = 25;
-            this.btnDay.Text = "Hôm nay";
+            this.btnDay.Text = "Ngày";
             this.btnDay.UseVisualStyleBackColor = true;
+            this.btnDay.Click += new System.EventHandler(this.btnDay_Click);
             // 
             // btnViewMore
             // 
@@ -185,6 +174,42 @@ namespace MobileShopWinform
             this.panel1.Size = new System.Drawing.Size(536, 64);
             this.panel1.TabIndex = 22;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Doanh thu:";
+            // 
+            // labelTotalAmount
+            // 
+            this.labelTotalAmount.AutoSize = true;
+            this.labelTotalAmount.Location = new System.Drawing.Point(120, 144);
+            this.labelTotalAmount.Name = "labelTotalAmount";
+            this.labelTotalAmount.Size = new System.Drawing.Size(13, 13);
+            this.labelTotalAmount.TabIndex = 30;
+            this.labelTotalAmount.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 180);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Số khách hàng:";
+            // 
+            // labelCustomer
+            // 
+            this.labelCustomer.AutoSize = true;
+            this.labelCustomer.Location = new System.Drawing.Point(120, 180);
+            this.labelCustomer.Name = "labelCustomer";
+            this.labelCustomer.Size = new System.Drawing.Size(13, 13);
+            this.labelCustomer.TabIndex = 32;
+            this.labelCustomer.Text = "0";
+            // 
             // FrmStatistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +224,7 @@ namespace MobileShopWinform
             this.Load += new System.EventHandler(this.FrmStatistic_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -213,12 +239,14 @@ namespace MobileShopWinform
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnAll;
-        private System.Windows.Forms.Button btnMonth;
-        private System.Windows.Forms.Button btnWeek;
         private System.Windows.Forms.Button btnDay;
         private System.Windows.Forms.Button btnViewMore;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelTotalAmount;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelCustomer;
+        private System.Windows.Forms.Label label2;
     }
 }

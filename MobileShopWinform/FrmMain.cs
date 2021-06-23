@@ -247,7 +247,7 @@ namespace MobileShopWinform
 
         private void thốngKêToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FrmStatistic f = new FrmStatistic();
+            FrmStatisticRevenue f = new FrmStatisticRevenue();
             this.Hide();
             f.ShowDialog();
             this.Show();
