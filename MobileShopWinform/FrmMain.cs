@@ -261,6 +261,15 @@ namespace MobileShopWinform
             f.ShowDialog();
             this.Show();
         }
+
+        private void ngườiDùngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmUser f = new FrmUser();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
         #endregion
+
     }
 }
