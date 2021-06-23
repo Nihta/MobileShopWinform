@@ -111,17 +111,17 @@ namespace MobileShopWinform
         {
             int custumerIDSelected = Convert.ToInt32(cbCustomer.SelectedValue.ToString());
 
-            if (custumerIDSelected < 1)
+            if (dtOrderDetail.Rows.Count == 0)
             {
-                MyMessageBox.Warning("Chưa có thông tin người mua hàng!");
-                btnSearchCustomer.Focus();
+                MyMessageBox.Warning("Giỏ hàng trống!");
+                cbProduct.Focus();
                 return;
             }
 
-            if (dtOrderDetail.Rows.Count == 0)
+            if (custumerIDSelected < 1)
             {
-                MyMessageBox.Warning("Chưa có dữ liệu hàng hoá khách mua!");
-                cbProduct.Focus();
+                MyMessageBox.Warning("Chưa có thông tin người mua!");
+                btnSearchCustomer.Focus();
                 return;
             }
 
@@ -271,5 +271,15 @@ namespace MobileShopWinform
         }
         #endregion
 
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (FrmCustomer f = new FrmCustomer(FrmCustomer.mode.select))
+            {
+                f.ShowDialog();
+                cbCustomer.SelectedValue = FrmCustomer.customerIdSelected;
+            }
+            this.Show();
+        }
     }
 }

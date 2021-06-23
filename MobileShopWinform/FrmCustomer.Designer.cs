@@ -84,6 +84,7 @@ namespace MobileShopWinform
             this.btnSelect.Text = "Chọn";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Visible = false;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // cbFields
             // 
@@ -111,6 +112,7 @@ namespace MobileShopWinform
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel3
             // 

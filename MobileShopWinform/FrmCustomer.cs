@@ -7,6 +7,15 @@ namespace MobileShopWinform
 {
     public partial class FrmCustomer : Form
     {
+        public enum mode
+        {
+            nomal,
+            select,
+        };
+
+        public static int customerIdSelected = -1;
+
+        private mode formMode;
         private ControlHelper control = new ControlHelper();
 
         #region Sql
@@ -26,7 +35,7 @@ namespace MobileShopWinform
             cb.ValueMember = "CustomerID";
         }
         #endregion
-        public FrmCustomer()
+        public FrmCustomer(mode mode = mode.nomal)
         {
             InitializeComponent();
 
@@ -37,11 +46,54 @@ namespace MobileShopWinform
             dgvCustomer.Columns.Add(Common.CreateDgvCol(140, "CustomerAddress", "Địa chỉ"));
             dgvCustomer.Columns.Add(Common.CreateDgvCol(100, "CustomerPhone", "Số điện thoại"));
             dgvCustomer.Columns.Add(Common.CreateDgvCol(200, "CustomerEmail", "Email"));
+
+            // ConfigSearch
+            cbFields.Items.Add("Tên");
+            cbFields.Items.Add("Số điện thoại");
+            cbFields.Items.Add("Địa chỉ");
+            cbFields.Items.Add("Email");
+            cbFields.SelectedIndex = 0;
+
+            this.formMode = mode;
+            if (formMode == mode.select)
+            {
+                FrmCustomer.customerIdSelected = -1;
+                btnSelect.Show();
+            }
+
         }
 
-        private void GetDgvData()
+        public static string GetWhereQuery(ComboBox cbFields, TextBox txtFieldValue)
         {
-            string query = @"select CustomerID, CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone, CustomerEmail from tblCustomers c";
+            string search = "";
+
+            switch (cbFields.Text)
+            {
+                case "Tên":
+                    search = $"CustomerLastName like N'%{txtFieldValue.Text}%'";
+                    break;
+                case "Số điện thoại":
+                    search = $"CustomerPhone like '%{txtFieldValue.Text}%'";
+                    break;
+                case "Địa chỉ":
+                    search = $"CustomerAddress like N'%{txtFieldValue.Text}%'";
+                    break;
+                case "Email":
+                    search = $"CustomerEmail like '%{txtFieldValue.Text}%'";
+                    break;
+            }
+
+            return $"where {search}";
+        }
+
+        private void GetDgvData(string where = "")
+        {
+            string query = string.Format(@"
+            select CustomerID, CustomerFirstName, CustomerLastName,
+            CustomerAddress, CustomerPhone, CustomerEmail
+            from tblCustomers c
+            {0}     
+            ", where);
             SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
 
             DataTable dataTable = new DataTable();
@@ -127,8 +179,9 @@ namespace MobileShopWinform
                     case ControlHelper.ControlMode.Add:
                         {
                             string query = string.Format(@"
-insert into tblCustomers (CustomerFirstName, CustomerLastName, CustomerAddress, CustomerPhone, CustomerEmail)
-values (N'{0}', N'{1}', N'{2}', '{3}', N'{4}');
+                            insert into tblCustomers (CustomerFirstName, CustomerLastName,
+                            CustomerAddress, CustomerPhone, CustomerEmail)
+                            values (N'{0}', N'{1}', N'{2}', '{3}', N'{4}');
                             ", fName, lName, address, phone, email);
                             SqlCommon.ExecuteNonQuery(query);
                             control.ClearTextBox();
@@ -139,9 +192,10 @@ values (N'{0}', N'{1}', N'{2}', '{3}', N'{4}');
                             int idNeedEdit = Common.GetCurID(dgvCustomer, "CustomerID");
 
                             string query = string.Format(@"
-update tblCustomers
-set CustomerFirstName = N'{0}', CustomerLastName = N'{1}', CustomerAddress = N'{2}', CustomerPhone = '{3}', CustomerEmail = N'{4}'
-where CustomerID = {5};
+                            update tblCustomers
+                            set CustomerFirstName = N'{0}', CustomerLastName = N'{1}', CustomerAddress = N'{2}',
+                            CustomerPhone = '{3}', CustomerEmail = N'{4}'
+                            where CustomerID = {5};
                                 ", fName, lName, address, phone, email, idNeedEdit);
 
                             SqlCommon.ExecuteNonQuery(query);
@@ -173,6 +227,28 @@ where CustomerID = {5};
             txtAddress.Text = dgvCustomer.Rows[idx].Cells["CustomerAddress"].Value.ToString();
             txtPhone.Text = dgvCustomer.Rows[idx].Cells["CustomerPhone"].Value.ToString();
             txtEmail.Text = dgvCustomer.Rows[idx].Cells["CustomerEmail"].Value.ToString();
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomer.CurrentRow != null)
+            {
+                int curRowIdx = dgvCustomer.CurrentRow.Index;
+                int idSelected = Convert.ToInt32(dgvCustomer.Rows[curRowIdx].Cells["CustomerID"].Value.ToString());
+
+                FrmCustomer.customerIdSelected = idSelected;
+
+                this.Close();
+            }
+            else
+            {
+                MyMessageBox.Error("Không thể chọn!");
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            GetDgvData(GetWhereQuery(cbFields, txtFieldValue));
         }
     }
 }
