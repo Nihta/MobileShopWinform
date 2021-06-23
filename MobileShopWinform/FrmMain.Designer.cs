@@ -298,6 +298,7 @@ namespace MobileShopWinform
             this.cbProduct.Name = "cbProduct";
             this.cbProduct.Size = new System.Drawing.Size(168, 21);
             this.cbProduct.TabIndex = 11;
+            this.cbProduct.SelectedValueChanged += new System.EventHandler(this.cbProduct_SelectedValueChanged);
             // 
             // label5
             // 

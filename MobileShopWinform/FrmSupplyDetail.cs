@@ -199,11 +199,9 @@ namespace MobileShopWinform
                         }
                         break;
                 }
-                // ! Chưa hoạt động với order (cần trừ đi số đã bán)
+                // ! Chưa tối ưu
                 // Cập nhật lại số lượng mặt hàng
-                string queryGetPrAm = $"select sum(SupplyDetailQuantity) from tblSupplyDetails where ProductID = {productID}";
-                int productAmount = Convert.ToInt32(SqlCommon.ExecuteScalar(queryGetPrAm).ToString());
-                SqlCommon.ExecuteNonQuery($"update tblProducts set ProductAmount = {productAmount} where ProductID = {productID};");
+                FrmProduct.UpdateTotalAmount(productID);
 
                 GetDgvData();
                 control.SwitchMode(ControlHelper.ControlMode.None);
@@ -232,7 +230,7 @@ namespace MobileShopWinform
             cbSup.SelectedValue = Convert.ToInt32(dgvSupplyDetail.Rows[idx].Cells["SupplierID"].Value.ToString());
             cbProduct.SelectedValue = Convert.ToInt32(dgvSupplyDetail.Rows[idx].Cells["ProductID"].Value.ToString());
             numericUpDownQuantity.Value = Convert.ToDecimal(dgvSupplyDetail.Rows[idx].Cells["SupplyDetailQuantity"].Value.ToString());
-            // Đang lỗi
+            // !
             //dateTimePickerDate.Text = dgvSupplyDetail.Rows[idx].Cells["SupplyDetailDate"].Value.ToString().Trim();
         }
 

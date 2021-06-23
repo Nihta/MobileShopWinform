@@ -43,8 +43,6 @@ namespace MobileShopWinform
             dateTimePickerOrder.Value = DateTime.Now;
         }
 
-
-
         private void btnAddOrderItem_Click(object sender, EventArgs e)
         {
             string productName = cbProduct.Text;
@@ -164,6 +162,8 @@ namespace MobileShopWinform
                 );
 
                 SqlCommon.ExecuteNonQuery(queryAddOrderDetail);
+                FrmProduct.UpdateTotalAmount(Convert.ToInt32(dataRow["ProductID"].ToString()));
+
             }
 
             MyMessageBox.Information("Thành công!");
@@ -309,6 +309,17 @@ namespace MobileShopWinform
             if (MyValidation.IsNumeric(txtTotalOrder.Text, "Tổng tiền"))
             {
                 this.totalAmount = Convert.ToInt32(txtTotalOrder.Text.ToString());
+            }
+        }
+
+        private void cbProduct_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbProduct.SelectedValue != null && cbProduct.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string tmp = cbProduct.SelectedValue.ToString();
+                int productID = Convert.ToInt32(tmp);
+                int numOfItem = FrmProduct.GetNumOfItem(productID);
+                numericUpDownQuantity.Maximum = numOfItem;
             }
         }
     }

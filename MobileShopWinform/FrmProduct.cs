@@ -26,9 +26,24 @@ namespace MobileShopWinform
             return price;
         }
 
+        public static int GetNumOfItem(int productID)
+        {
+            string query = $"select ProductAmount from tblProducts where  ProductID = {productID}";
+            int numOfItem = Convert.ToInt32(SqlCommon.ExecuteScalar(query).ToString());
+            return numOfItem;
+        }
+
+        public static int UpdateNumOfItem(int productID, int change)
+        {
+            int newValue = GetNumOfItem(productID) + change;
+            string query = $"update tblProducts set ProductAmount = {newValue} where ProductID = {productID};";
+            int numOfItem = Convert.ToInt32(SqlCommon.ExecuteScalar(query).ToString());
+            return numOfItem;
+        }
+
         public static void FillCombox(ComboBox cb)
         {
-            string query = "select ProductID, ProductName from tblProducts";
+            string query = "select ProductID, ProductName from tblProducts where ProductAmount != 0";
             SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
 
             DataTable dataTable = new DataTable();
@@ -37,6 +52,22 @@ namespace MobileShopWinform
             cb.DataSource = dataTable;
             cb.DisplayMember = "ProductName";
             cb.ValueMember = "ProductID";
+        }
+
+        public static void UpdateTotalAmount(int productID)
+        {
+            string queryProductAmountBuy = $"select sum(SupplyDetailQuantity) from tblSupplyDetails where ProductID = {productID}";
+            int productAmountBuy = Convert.ToInt32(SqlCommon.ExecuteScalar(queryProductAmountBuy).ToString());
+
+            string queryProductAmountSell = $"select sum(OrderDetailQuantity) from tblOrderDetails where ProductID = {productID}";
+            string res = SqlCommon.ExecuteScalar(queryProductAmountSell).ToString();
+            int productAmountSell = 0;
+            if (res != "")
+            {
+                productAmountSell = Convert.ToInt32(res);
+            }
+
+            SqlCommon.ExecuteNonQuery($"update tblProducts set ProductAmount = {productAmountBuy - productAmountSell} where ProductID = {productID};");
         }
         #endregion
 
