@@ -9,6 +9,21 @@ namespace MobileShopWinform
     {
         private ControlHelper control = new ControlHelper();
 
+        #region sql
+        public static void FillCombobox(ComboBox cb)
+        {
+            string query = @"select BrandID, BrandName from tblBrands";
+            SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
+
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dataReader);
+
+            cb.DataSource = dataTable;
+            cb.DisplayMember = "BrandName";
+            cb.ValueMember = "BrandID";
+        }
+        #endregion
+
         public FrmBrand()
         {
             InitializeComponent();

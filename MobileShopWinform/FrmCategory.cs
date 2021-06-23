@@ -15,6 +15,21 @@ namespace MobileShopWinform
     {
         private ControlHelper control = new ControlHelper();
 
+        #region
+        public static void FillCombobox(ComboBox cb)
+        {
+            string query = @"select CategoryID, CategoryName from tblCategorys";
+            SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
+
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dataReader);
+
+            cb.DataSource = dataTable;
+            cb.DisplayMember = "CategoryName";
+            cb.ValueMember = "CategoryID";
+        }
+        #endregion
+
         public FrmCategory()
         {
             InitializeComponent();

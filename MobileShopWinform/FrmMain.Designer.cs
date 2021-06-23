@@ -258,6 +258,7 @@ namespace MobileShopWinform
             this.btnSearchProduct.TabIndex = 19;
             this.btnSearchProduct.Text = "Tìm";
             this.btnSearchProduct.UseVisualStyleBackColor = true;
+            this.btnSearchProduct.Click += new System.EventHandler(this.btnSearchProduct_Click);
             // 
             // btnDelOrderItem
             // 

@@ -31,7 +31,7 @@ namespace MobileShopWinform
         {
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
-            this.cbSearchSup = new System.Windows.Forms.ComboBox();
+            this.cbSearchBrand = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbSearchCate = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -68,30 +68,32 @@ namespace MobileShopWinform
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(580, 60);
+            this.btnSearch.Location = new System.Drawing.Point(615, 60);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(459, 60);
+            this.btnReset.Location = new System.Drawing.Point(494, 60);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "Đặt lại";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // cbSearchSup
+            // cbSearchBrand
             // 
-            this.cbSearchSup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSearchSup.FormattingEnabled = true;
-            this.cbSearchSup.Location = new System.Drawing.Point(154, 63);
-            this.cbSearchSup.Name = "cbSearchSup";
-            this.cbSearchSup.Size = new System.Drawing.Size(196, 21);
-            this.cbSearchSup.TabIndex = 12;
+            this.cbSearchBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSearchBrand.FormattingEnabled = true;
+            this.cbSearchBrand.Location = new System.Drawing.Point(154, 63);
+            this.cbSearchBrand.Name = "cbSearchBrand";
+            this.cbSearchBrand.Size = new System.Drawing.Size(196, 21);
+            this.cbSearchBrand.TabIndex = 12;
             // 
             // label8
             // 
@@ -106,7 +108,7 @@ namespace MobileShopWinform
             // 
             this.cbSearchCate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSearchCate.FormattingEnabled = true;
-            this.cbSearchCate.Location = new System.Drawing.Point(459, 25);
+            this.cbSearchCate.Location = new System.Drawing.Point(494, 25);
             this.cbSearchCate.Name = "cbSearchCate";
             this.cbSearchCate.Size = new System.Drawing.Size(196, 21);
             this.cbSearchCate.TabIndex = 12;
@@ -114,7 +116,7 @@ namespace MobileShopWinform
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(374, 28);
+            this.label7.Location = new System.Drawing.Point(409, 28);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 13);
             this.label7.TabIndex = 11;
@@ -131,17 +133,18 @@ namespace MobileShopWinform
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSelect);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.btnReset);
-            this.groupBox1.Controls.Add(this.cbSearchSup);
+            this.groupBox1.Controls.Add(this.cbSearchBrand);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.cbSearchCate);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtSearchName);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(381, 12);
+            this.groupBox1.Location = new System.Drawing.Point(381, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(864, 100);
+            this.groupBox1.Size = new System.Drawing.Size(867, 100);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm";
@@ -156,9 +159,9 @@ namespace MobileShopWinform
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(28, 279);
+            this.btnSelect.Location = new System.Drawing.Point(747, 23);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(307, 23);
+            this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 11;
             this.btnSelect.Text = "Chọn";
             this.btnSelect.UseVisualStyleBackColor = true;
@@ -240,7 +243,6 @@ namespace MobileShopWinform
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnSelect);
             this.panel1.Controls.Add(this.cbBrand);
             this.panel1.Controls.Add(this.cbCategory);
             this.panel1.Controls.Add(this.label5);
@@ -396,7 +398,7 @@ namespace MobileShopWinform
 
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.ComboBox cbSearchSup;
+        private System.Windows.Forms.ComboBox cbSearchBrand;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbSearchCate;
         private System.Windows.Forms.Label label7;

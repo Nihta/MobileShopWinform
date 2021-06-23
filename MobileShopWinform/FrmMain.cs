@@ -184,6 +184,30 @@ namespace MobileShopWinform
             this.Show();
         }
 
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (FrmCustomer f = new FrmCustomer(FrmCustomer.mode.select))
+            {
+                f.ShowDialog();
+            }
+            this.Show();
+            FrmCustomer.FillCombox(cbCustomer);
+                cbCustomer.SelectedValue = FrmCustomer.customerIdSelected;
+        }
+
+        private void btnSearchProduct_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (FrmProduct f = new FrmProduct(FrmProduct.mode.select))
+            {
+                f.ShowDialog();
+            }
+            this.Show();
+            FrmProduct.FillCombox(cbProduct);
+            cbProduct.SelectedValue = FrmProduct.productIdSelected;
+        }
+
         #region Menu strip
         private void nhãnHàngToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -207,6 +231,7 @@ namespace MobileShopWinform
             this.Hide();
             f.ShowDialog();
             this.Show();
+            FrmCustomer.FillCombox(cbCustomer);
         }
 
         private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -223,6 +248,7 @@ namespace MobileShopWinform
             this.Hide();
             f.ShowDialog();
             this.Show();
+            FrmProduct.FillCombox(cbProduct);
         }
 
         private void đăngXuấtToolStripMenuItem1_Click_1(object sender, EventArgs e)
@@ -270,16 +296,5 @@ namespace MobileShopWinform
             this.Show();
         }
         #endregion
-
-        private void btnSearchCustomer_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            using (FrmCustomer f = new FrmCustomer(FrmCustomer.mode.select))
-            {
-                f.ShowDialog();
-                cbCustomer.SelectedValue = FrmCustomer.customerIdSelected;
-            }
-            this.Show();
-        }
     }
 }

@@ -7,6 +7,15 @@ namespace MobileShopWinform
 {
     public partial class FrmProduct : Form
     {
+        public enum mode
+        {
+            nomal,
+            select,
+        };
+
+        public static int productIdSelected = -1;
+
+        private mode formMode;
         private ControlHelper control = new ControlHelper();
 
         #region Sql
@@ -31,7 +40,7 @@ namespace MobileShopWinform
         }
         #endregion
 
-        public FrmProduct()
+        public FrmProduct(mode mode = mode.nomal)
         {
             InitializeComponent();
 
@@ -48,16 +57,24 @@ namespace MobileShopWinform
             dgvProduct.Columns["CategoryID"].Visible = false;
             dgvProduct.Columns.Add(Common.CreateDgvCol(30, "BrandID", "Nhãn hàng"));
             dgvProduct.Columns["BrandID"].Visible = false;
+
+            this.formMode = mode;
+            if (formMode == mode.select)
+            {
+                FrmProduct.productIdSelected = -1;
+                btnSelect.Show();
+            }
         }
 
 
-        private void GetDgvData()
+        private void GetDgvData(string where = "")
         {
-            string query = @"
+            string query = string.Format(@"
                 select  ProductID, ProductName, ProductPrice, ProductDesc, ProductAmount, t.BrandID, BrandName, tC.CategoryID, CategoryName from tblProducts
                 join tblBrands t on t.BrandID = tblProducts.BrandID
                 join tblCategorys tC on tC.CategoryID = tblProducts.CategoryID
-            ";
+                {0}
+            ", where);
             SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
 
             DataTable dataTable = new DataTable();
@@ -68,28 +85,14 @@ namespace MobileShopWinform
 
         private void GetcbCategoryData()
         {
-            string query = @"select CategoryID, CategoryName from tblCategorys";
-            SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
-
-            DataTable dataTable = new DataTable();
-            dataTable.Load(dataReader);
-
-            cbCategory.DataSource = dataTable;
-            cbCategory.DisplayMember = "CategoryName";
-            cbCategory.ValueMember = "CategoryID";
+            FrmCategory.FillCombobox(cbCategory);
+            FrmCategory.FillCombobox(cbSearchCate);
         }
 
         private void GetcbBrandData()
         {
-            string query = @"select BrandID, BrandName from tblBrands";
-            SqlDataReader dataReader = SqlCommon.ExecuteReader(query);
-
-            DataTable dataTable = new DataTable();
-            dataTable.Load(dataReader);
-
-            cbBrand.DataSource = dataTable;
-            cbBrand.DisplayMember = "BrandName";
-            cbBrand.ValueMember = "BrandID";
+            FrmBrand.FillCombobox(cbBrand);
+            FrmBrand.FillCombobox(cbSearchBrand);
         }
 
         private void FrmProduct_Load(object sender, EventArgs e)
@@ -219,8 +222,33 @@ namespace MobileShopWinform
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
+            if (dgvProduct.CurrentRow != null)
+            {
+                int curRowIdx = dgvProduct.CurrentRow.Index;
+                int idSelected = Convert.ToInt32(dgvProduct.Rows[curRowIdx].Cells["ProductID"].Value.ToString());
 
+                FrmProduct.productIdSelected = idSelected;
+
+                this.Close();
+            }
+            else
+            {
+                MyMessageBox.Error("Không thể chọn!");
+            }
         }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            GetDgvData();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            int categoryID = Convert.ToInt32(cbSearchCate.SelectedValue.ToString());
+            int bardID = Convert.ToInt32(cbSearchBrand.SelectedValue.ToString());
+            string productName = txtSearchName.Text;
+            string whereQuery = $"where ProductName like N'%{productName}%' and t.BrandID = {bardID} and tC.CategoryID = {categoryID}";
+            GetDgvData(whereQuery);
+        }
     }
 }

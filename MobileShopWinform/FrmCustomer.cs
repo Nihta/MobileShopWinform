@@ -60,7 +60,6 @@ namespace MobileShopWinform
                 FrmCustomer.customerIdSelected = -1;
                 btnSelect.Show();
             }
-
         }
 
         public static string GetWhereQuery(ComboBox cbFields, TextBox txtFieldValue)
