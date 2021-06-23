@@ -451,6 +451,7 @@ namespace MobileShopWinform
             this.txtTotalOrder.Name = "txtTotalOrder";
             this.txtTotalOrder.Size = new System.Drawing.Size(168, 20);
             this.txtTotalOrder.TabIndex = 12;
+            this.txtTotalOrder.TextChanged += new System.EventHandler(this.txtTotalOrder_TextChanged);
             // 
             // label3
             // 

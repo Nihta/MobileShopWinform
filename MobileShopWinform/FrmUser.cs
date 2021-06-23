@@ -71,10 +71,15 @@ namespace MobileShopWinform
 
         private bool IsInvalid()
         {
-            if (txtFullName.Text.Length == 0)
+            if (!MyValidation.IsTextInvalid(txtFullName.Text, 1, 30, "Họ và tên"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập họ và tên!");
                 txtFullName.Focus();
+                return false;
+            }
+
+            if (!MyValidation.IsUserNameInvalid(txtUserName.Text))
+            {
+                txtUserName.Focus();
                 return false;
             }
 
@@ -94,6 +99,12 @@ namespace MobileShopWinform
                 {
                     case ControlHelper.ControlMode.Add:
                         {
+                            if (pas.Length == 0)
+                            {
+                                MyMessageBox.Warning("Bạn chưa nhập mật khẩu");
+                                return;
+                            }
+
                             string query = string.Format(@"
                             insert into tblUsers
                             (UserFullName, UserName, PassWord)

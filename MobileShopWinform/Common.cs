@@ -365,16 +365,6 @@ namespace MobileShopWinform
 
     class MyValidation
     {
-        public static bool IsEmpty(string text, string name = "")
-        {
-            if (name != "" && text.Length == 0)
-            {
-                MyMessageBox.Warning($"{name} không được để trống!");
-            }
-
-            return text.Length == 0;
-        }
-
         public static bool IsNumeric(string text, string name)
         {
             if (!Regex.IsMatch(text, @"^\d+$"))
@@ -386,43 +376,57 @@ namespace MobileShopWinform
             return true;
         }
 
-        public static bool IsInRange(string text, int min, int max, string name)
+        public static bool IsUserNameInvalid(string text)
         {
+            if (!Regex.IsMatch(text, @"^[\w\d]+$"))
+            {
+                MyMessageBox.Warning($"Tên đăng nhập không hợp lệ!");
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool IsTextInvalid(string text, int min, int max, string name, bool isRequire = true)
+        {
+            if (!isRequire && text.Length == 0)
+            {
+                return true;
+            }
+
+            if (text.Length == 0)
+            {
+                MyMessageBox.Warning($"{name} là bắt buộc !");
+                return false;
+            }
+
             if (text.Length < min)
             {
                 MyMessageBox.Warning($"{name} quá ngắn!");
                 return false;
             }
-            else if (text.Length > max)
+
+            if (text.Length > max)
             {
                 MyMessageBox.Warning($"{name} quá dài!");
                 return false;
             }
 
-            return true;
-        }
-
-        public static bool CommonValidation(string text, int min, int max, string name)
-        {
-            if (IsEmpty(text, name))
+            if (!Regex.IsMatch(text, @"^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\d\s]*$"))
             {
-                return false;
-            }
-            else if (!IsInRange(text, min, max, name))
-            {
+                MyMessageBox.Warning($"{name} chỉ được sửa dụng các chữa cái tiếng việt, các số và khoảng trắng!");
                 return false;
             }
 
             return true;
         }
+
 
         public static bool IsPhoneInvalid(string text)
         {
-            string name = "Số điện thoại";
-
             if (!Regex.IsMatch(text, @"^[0-9]*$"))
             {
-                MyMessageBox.Warning($"Số điện thoại không hợp lệ!\n{name} chỉ bao gồm các số 0->9");
+                MyMessageBox.Warning($"Số điện thoại không hợp lệ!\nSố điện thoại chỉ bao gồm các số 0->9");
                 return false;
             }
 

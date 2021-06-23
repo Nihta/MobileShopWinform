@@ -71,33 +71,30 @@ namespace MobileShopWinform
 
         private bool IsInvalid()
         {
-            if (txtName.Text.Length == 0)
+            if (!MyValidation.IsTextInvalid(txtName.Text, 1, 30, "Tên nhà cung cấp"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên nhà cung cấp!");
                 txtName.Focus();
                 return false;
             }
 
-            if (txtAddress.Text.Length == 0)
+            if (!MyValidation.IsPhoneInvalid(txtPhone.Text))
             {
-                MyMessageBox.Warning("Bạn chưa nhập địa chỉ!");
-                txtAddress.Focus();
-                return false;
-            }
-
-            if (txtPhone.Text.Length == 0)
-            {
-                MyMessageBox.Warning("Bạn chưa nhập tên số điện thoại!");
                 txtPhone.Focus();
                 return false;
             }
 
-            if (txtEmail.Text.Length == 0)
+            if (!MyValidation.IsTextInvalid(txtAddress.Text, 0, 50, "Địa chỉ", false))
             {
-                MyMessageBox.Warning("Bạn chưa nhập địa chỉ email!");
+                txtAddress.Focus();
+                return false;
+            }
+
+            if (!MyValidation.IsEmailInvalid(txtEmail.Text))
+            {
                 txtEmail.Focus();
                 return false;
             }
+
 
             return true;
         }

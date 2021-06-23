@@ -139,24 +139,33 @@ namespace MobileShopWinform
 
         private bool IsInvalid()
         {
-            if (txtFName.Text.Length == 0)
+            if (!MyValidation.IsTextInvalid(txtFName.Text, 1, 20, "Họ"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập họ!");
                 txtFName.Focus();
                 return false;
             }
 
-            if (txtLName.Text.Length == 0)
+            if (!MyValidation.IsTextInvalid(txtLName.Text, 1, 20, "Tên"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên!");
                 txtLName.Focus();
                 return false;
             }
 
-            if (txtPhone.Text.Length == 0)
+            if (!MyValidation.IsPhoneInvalid(txtPhone.Text))
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên số điện thoại!");
                 txtPhone.Focus();
+                return false;
+            }
+
+            if (txtAddress.Text.Length != 0 && !MyValidation.IsTextInvalid(txtAddress.Text, 0, 50, "Địa chỉ", false))
+            {
+                txtAddress.Focus();
+                return false;
+            }
+
+            if (txtEmail.Text.Length != 0 && !MyValidation.IsEmailInvalid(txtEmail.Text))
+            {
+                txtEmail.Focus();
                 return false;
             }
 

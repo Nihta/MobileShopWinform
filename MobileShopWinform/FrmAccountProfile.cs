@@ -34,9 +34,9 @@ namespace MobileShopWinform
             string fullName = txtFullName.Text;
             string newPassWord = txtNewPassWord.Text;
 
-            if (fullName.Length == 0)
+
+            if (!MyValidation.IsTextInvalid(fullName, 1, 30, "Họ và tên"))
             {
-                MyMessageBox.Warning("Không được bỏ trống họ và tên");
                 txtFullName.Focus();
                 return;
             }

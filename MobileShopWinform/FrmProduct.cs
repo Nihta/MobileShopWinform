@@ -136,17 +136,21 @@ namespace MobileShopWinform
 
         private bool IsInvalid()
         {
-            if (txtName.Text.Length == 0)
+            if (!MyValidation.IsTextInvalid(txtName.Text, 1, 30, "Tên mặt hàng"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên mặt hàng!");
                 txtName.Focus();
                 return false;
             }
 
-            if (txtPrice.Text.Length == 0)
+            if (!MyValidation.IsNumeric(txtPrice.Text, "Giá mặt hàng"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập giá mặt hàng!");
                 txtPrice.Focus();
+                return false;
+            }
+
+            if (txtDesc.Text.Length != 0 && !MyValidation.IsTextInvalid(txtDesc.Text, 0, 50, "Mô tả", false))
+            {
+                txtDesc.Focus();
                 return false;
             }
 

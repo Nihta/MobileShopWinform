@@ -59,6 +59,12 @@ namespace MobileShopWinform
                 return;
             }
 
+            if (!MyValidation.IsTextInvalid(note, 0, 50, "Ghi chú", false))
+            {
+                txtNote.Focus();
+                return;
+            }
+
             int price = FrmProduct.GetPrice(productId) * quantity;
 
             DataRow newRow = dtOrderDetail.NewRow();
@@ -125,7 +131,7 @@ namespace MobileShopWinform
                 return;
             }
 
-            if (!MyMessageBox.Question("Hành động không thể hoàn tác!\nBạn có chắc chắn?"))
+            if (!MyMessageBox.Question("Bạn có chắn chắn?"))
             {
                 return;
             }
@@ -193,7 +199,7 @@ namespace MobileShopWinform
             }
             this.Show();
             FrmCustomer.FillCombox(cbCustomer);
-                cbCustomer.SelectedValue = FrmCustomer.customerIdSelected;
+            cbCustomer.SelectedValue = FrmCustomer.customerIdSelected;
         }
 
         private void btnSearchProduct_Click(object sender, EventArgs e)
@@ -296,5 +302,14 @@ namespace MobileShopWinform
             this.Show();
         }
         #endregion
+
+        // Tạm thời không dùng do tổng tiền bị disable
+        private void txtTotalOrder_TextChanged(object sender, EventArgs e)
+        {
+            if (MyValidation.IsNumeric(txtTotalOrder.Text, "Tổng tiền"))
+            {
+                this.totalAmount = Convert.ToInt32(txtTotalOrder.Text.ToString());
+            }
+        }
     }
 }

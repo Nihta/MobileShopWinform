@@ -89,12 +89,18 @@ namespace MobileShopWinform
 
         private bool IsInvalid()
         {
-            if (txtName.Text.Length == 0)
+            if (!MyValidation.IsTextInvalid(txtName.Text, 1, 30, "Tên danh mục"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên danh mục!");
                 txtName.Focus();
                 return false;
             }
+
+            if (!MyValidation.IsTextInvalid(txtDesc.Text, 1, 50, "Mô tả", false))
+            {
+                txtName.Focus();
+                return false;
+            }
+
 
             return true;
         }

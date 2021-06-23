@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MobileShopWinform
@@ -55,9 +48,8 @@ namespace MobileShopWinform
             string userName = txtUserName.Text;
             string passWord = txtPassWord.Text;
 
-            if (userName.Length == 0)
+            if (!MyValidation.IsTextInvalid(userName, 3, 30, "Tên đăng nhập"))
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên đăng nhập!");
                 txtUserName.Focus();
                 return false;
             }
@@ -68,6 +60,8 @@ namespace MobileShopWinform
                 txtPassWord.Focus();
                 return false;
             }
+
+     
 
             return true;
         }

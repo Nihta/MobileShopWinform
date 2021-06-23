@@ -137,8 +137,20 @@ namespace MobileShopWinform
 
             if (txtNoteTotalAmount.Text.Length == 0)
             {
-                MyMessageBox.Warning("Bạn chưa nhập tên tổng tiền!");
+                MyMessageBox.Warning("Bạn chưa nhập tổng tiền!");
                 txtNoteTotalAmount.Focus();
+                return false;
+            }
+
+            if (!MyValidation.IsNumeric(txtNoteTotalAmount.Text, "Tổng tiền"))
+            {
+                txtNoteTotalAmount.Focus();
+                return false;
+            }
+
+            if (txtNote.Text.Length != 0 && !MyValidation.IsTextInvalid(txtNote.Text, 0, 50, "Ghi chú", false))
+            {
+                txtNote.Focus();
                 return false;
             }
 
